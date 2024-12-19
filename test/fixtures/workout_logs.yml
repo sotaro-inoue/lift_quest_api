@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  exercise_name: MyString
+  type_of_exercise: MyString
+  weight: 1.5
+  reps: 1
+
+two:
+  exercise_name: MyString
+  type_of_exercise: MyString
+  weight: 1.5
+  reps: 1
