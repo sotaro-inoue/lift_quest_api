@@ -24,7 +24,8 @@ class Api::V1::WorkoutLogsController < ApplicationController
     if @workout_log.save
       render json: @workout_log, status: :created
     else
-      render json: @workout_log.errors, status: :unprocessable_entity
+      Rails.logger.error(@workout_log.errors.full_messages)
+      render json: { errors: @workout_log.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +33,8 @@ class Api::V1::WorkoutLogsController < ApplicationController
     if @workout_log.update(workout_log_params)
       render json: @workout_log
     else
-      render json: @workout_log.errors, status: :unprocessable_entity
+      Rails.logger.error(@workout_log.errors.full_messages)
+      render json: { errors: @workout_log.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -138,5 +140,10 @@ class Api::V1::WorkoutLogsController < ApplicationController
     unless @workout_log.user == current_api_v1_user
       render json: { error: "Unauthorized" }, status: :unauthorized
     end
+  end
+
+  def workout_log_params
+    Rails.logger.debug("Workout log params: #{params.inspect}")
+    params.require(:workout_log).permit(:notes)
   end
 end

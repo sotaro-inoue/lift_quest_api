@@ -2,16 +2,7 @@ class Api::V1::TypeOfExercisesController < ApplicationController
   before_action :authenticate_api_v1_user!
 
   def index
-    @type_of_exercises = TypeOfExercise
-                          .order(:name)
-                          .page(params[:page])
-                          .per(50)  # 1ページあたり50件
-
-    if params[:query].present?
-      @type_of_exercises = @type_of_exercises
-                            .where('name LIKE ?', "%#{params[:query]}%")
-    end
-
+    @type_of_exercises = TypeOfExercise.order(:type_of_exercise)
     render json: @type_of_exercises
   end
 
@@ -140,5 +131,9 @@ class Api::V1::TypeOfExercisesController < ApplicationController
     else
       render json: @type_of_exercise.errors, status: :unprocessable_entity
     end
+  end
+
+  def type_of_exercise_params
+    params.require(:type_of_exercise).permit(:type_of_exercise, :priority, :difficulty_level, :main_target)
   end
 end

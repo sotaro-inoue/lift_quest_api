@@ -29,7 +29,8 @@ class Api::V1::ExercisesController < ApplicationController
     if @exercise.save
       render json: @exercise, status: :created
     else
-      render json: @exercise.errors, status: :unprocessable_entity
+      Rails.logger.error(@exercise.errors.full_messages)
+      render json: { errors: @exercise.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -37,7 +38,8 @@ class Api::V1::ExercisesController < ApplicationController
     if @exercise.update(exercise_params)
       render json: @exercise
     else
-      render json: @exercise.errors, status: :unprocessable_entity
+      Rails.logger.error(@exercise.errors.full_messages)
+      render json: { errors: @exercise.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -96,13 +98,7 @@ class Api::V1::ExercisesController < ApplicationController
   end
 
   def exercise_params
-    params.require(:exercise).permit(
-      :type_of_exercise_id,
-      :custom_type_of_exercise_id,
-      :weight,
-      :reps,
-      :sets
-    )
+    params.require(:exercise).permit(:type_of_exercise_id, :exercise_name, :weight, :reps, :sets)
   end
 
   def authorize_exercise

@@ -1,6 +1,6 @@
 class TypeOfExercise < ApplicationRecord
-  has_many :exercises
-  has_many :custom_type_of_exercises
+  has_many :exercises, dependent: :destroy
+  has_many :custom_type_of_exercises, dependent: :destroy
   has_many :users, through: :custom_type_of_exercises
 
   # 優先度の定義

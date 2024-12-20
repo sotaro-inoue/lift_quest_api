@@ -36,7 +36,8 @@ class Api::V1::UsersController < ApplicationController
     if current_api_v1_user.update(training_info_params)
       render json: current_api_v1_user
     else
-      render json: current_api_v1_user.errors, status: :unprocessable_entity
+      Rails.logger.error(current_api_v1_user.errors.full_messages)
+      render json: { errors: current_api_v1_user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -71,6 +72,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def training_info_params
+    # パラメータをログに出力して問題を特定
+    Rails.logger.debug("Training info params: #{params.inspect}")
     params.require(:user).permit(:experience_level, :training_goal)
   end
 end

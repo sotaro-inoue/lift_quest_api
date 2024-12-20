@@ -1,9 +1,9 @@
-1:
-  name: "Custom Exercise 1"
-  user_id: one
-  type_of_exercise_id: 1
+one:
+  name: "Custom Bench Press"
+  user: one
+  type_of_exercise: one
 
-2:
-  name: "Custom Exercise 2"
-  user_id: two
-  type_of_exercise_id: 2
+two:
+  name: "Custom Squat"
+  user: two
+  type_of_exercise: two
