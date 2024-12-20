@@ -37,5 +37,7 @@ module LiftQuestApi
 
     # 翻訳ファイルのパスを追加
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
+
+    config.secret_key_base = ENV['SECRET_KEY_BASE']
   end
 end
