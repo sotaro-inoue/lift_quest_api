@@ -4,7 +4,6 @@ one:
   name: "User One"
   provider: "email"
   uid: "user1@example.com"
-  user_id: "1"
   experience_level: 1
   training_goal: 1
 
@@ -14,6 +13,5 @@ two:
   name: "User Two"
   provider: "email"
   uid: "user2@example.com"
-  user_id: "2"
   experience_level: 2
   training_goal: 2

@@ -1,16 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  workout_log_id: 1
-  type_of_exercise_id: 1
+  workout_log: one
+  type_of_exercise: one
   exercise_name: "Bench Press"
   weight: 50.0
   reps: 10
   sets: 3
 
 two:
-  workout_log_id: 2
-  type_of_exercise_id: 2
+  workout_log: two
+  type_of_exercise: two
   exercise_name: "Squat"
   weight: 80.0
   reps: 8
