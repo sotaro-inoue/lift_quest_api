@@ -12,11 +12,11 @@ jobs:
 
     env:
       RAILS_ENV: test
-      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-      TEST_DATABASE_USER: root
-      TEST_DATABASE_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
       DATABASE_HOST: 127.0.0.1
       DATABASE_PORT: 3306
+      TEST_DATABASE_USER: root
+      TEST_DATABASE_PASSWORD: password
 
     services:
       mysql:
@@ -24,13 +24,10 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: lift_quest_api_test
-          MYSQL_USER: root
-          MYSQL_PASSWORD: password
-          MYSQL_HOST: localhost
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping -h localhost"
+          --health-cmd="mysqladmin ping"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
@@ -63,3 +60,10 @@ jobs:
 
     - name: Run tests
       run: bundle exec rails test
+
+    - name: Debug Environment
+      run: |
+        echo "Current environment variables:"
+        env
+        echo "MySQL connection test:"
+        mysql -h 127.0.0.1 -P 3306 -u root -ppassword -e "SHOW DATABASES;"

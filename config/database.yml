@@ -28,8 +28,8 @@ development:
 test:
   <<: *default
   database: lift_quest_api_test
-  username: <%= ENV['TEST_DATABASE_USER'] || 'root' %>
-  password: <%= ENV['TEST_DATABASE_PASSWORD'] || 'password' %>
+  username: root
+  password: password
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
