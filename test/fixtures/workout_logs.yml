@@ -1,13 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  exercise_name: MyString
-  type_of_exercise: MyString
-  weight: 1.5
-  reps: 1
+  user: one
+  exercise_name: "Bench Press"
+  weight: 100
+  reps: 10
+  sets: 3
+  date: <%= Time.current %>
 
 two:
-  exercise_name: MyString
-  type_of_exercise: MyString
-  weight: 1.5
-  reps: 1
+  user: two
+  exercise_name: "Squat"
+  weight: 150
+  reps: 8
+  sets: 4
+  date: <%= Time.current %>

@@ -10,6 +10,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      RAILS_ENV: test
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      DATABASE_URL: mysql2://root:password@127.0.0.1:3306/lift_quest_api_test
+
     services:
       mysql:
         image: mysql:8.0
@@ -26,25 +31,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.3.0'
         bundler-cache: true
-    
+
     - name: Install dependencies
-      run: bundle install
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libmysqlclient-dev
+        bundle install
 
     - name: Set up database
-      env:
-        RAILS_ENV: test
-        DATABASE_URL: mysql2://root:password@127.0.0.1:3306/lift_quest_api_test
       run: |
         bundle exec rails db:create
         bundle exec rails db:schema:load
 
     - name: Run tests
-      env:
-        RAILS_ENV: test
-        DATABASE_URL: mysql2://root:password@127.0.0.1:3306/lift_quest_api_test
-      run: bundle exec rails test 
+      run: bundle exec rails test
