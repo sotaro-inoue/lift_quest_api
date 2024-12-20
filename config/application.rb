@@ -31,5 +31,11 @@ module LiftQuestApi
     config.middleware.use ActionDispatch::Cookies
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use config.session_store, config.session_options
+
+    # デフォルトのロケールを日本語に設定
+    config.i18n.default_locale = :ja
+    
+    # 翻訳ファイルのパスを追加
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   end
 end

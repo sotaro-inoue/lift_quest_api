@@ -1,19 +1,27 @@
 # frozen_string_literal: true
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  before_validation :ensure_user_id_has_at_mark
-  
+  validates :name, presence: true
+  validates :user_id, presence: true, 
+                    uniqueness: { case_sensitive: false },
+                    format: { 
+                      with: /\A@[a-zA-Z0-9_]+\z/,
+                      message: 'は@で始まる半角英数字とアンダースコアのみ使用できます'
+                    },
+                    length: { minimum: 3, maximum: 21 }
+
+  # デバッグ用のコールバック
+  after_validation :log_errors, if: -> { errors.any? }
+
   private
 
-  def ensure_user_id_has_at_mark
-    if user_id.present? && !user_id.start_with?('@')
-      self.user_id = "@#{user_id}"
-    end
+  def log_errors
+    Rails.logger.debug "User validation errors: #{errors.full_messages}"
   end
 end

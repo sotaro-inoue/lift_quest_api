@@ -1,4 +1,4 @@
-class CreateWorkoutLogs < ActiveRecord::Migration[8.0]
+class CreateWorkoutLogs < ActiveRecord::Migration[7.1]
   def change
     create_table :workout_logs do |t|
       t.string :exercise_name
