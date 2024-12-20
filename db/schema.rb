@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_19_064148) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_20_155326) do
+  create_table "custom_type_of_exercises", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "user_id", null: false
+    t.bigint "type_of_exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type_of_exercise_id"], name: "index_custom_type_of_exercises_on_type_of_exercise_id"
+    t.index ["user_id", "name"], name: "index_custom_type_of_exercises_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_custom_type_of_exercises_on_user_id"
+  end
+
+  create_table "exercises", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "workout_log_id"
+    t.integer "type_of_exercise_id"
+    t.string "exercise_name"
+    t.float "weight"
+    t.integer "reps"
+    t.integer "sets"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "type_of_exercises", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "priority", default: 0
+    t.integer "difficulty_level", default: 0
+    t.integer "main_target", default: 0
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -31,6 +62,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_19_064148) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_id"
+    t.integer "experience_level", default: 0
+    t.integer "training_goal", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -39,13 +72,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_19_064148) do
   end
 
   create_table "workout_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "exercise_name"
-    t.string "type_of_exercise"
-    t.float "weight"
-    t.integer "reps"
-    t.integer "sets"
+    t.text "notes"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "custom_type_of_exercises", "type_of_exercises"
+  add_foreign_key "custom_type_of_exercises", "users"
 end

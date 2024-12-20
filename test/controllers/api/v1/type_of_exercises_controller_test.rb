@@ -1,28 +1,28 @@
 require "test_helper"
 
-class Api::V1::WorkoutLogsControllerTest < ActionDispatch::IntegrationTest
+class Api::V1::TypeOfExercisesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get api_v1_workout_logs_index_url
+    get api_v1_type_of_exercises_index_url
     assert_response :success
   end
 
   test "should get show" do
-    get api_v1_workout_logs_show_url
+    get api_v1_type_of_exercises_show_url
     assert_response :success
   end
 
   test "should get create" do
-    get api_v1_workout_logs_create_url
+    get api_v1_type_of_exercises_create_url
     assert_response :success
   end
 
   test "should get update" do
-    get api_v1_workout_logs_update_url
+    get api_v1_type_of_exercises_update_url
     assert_response :success
   end
 
   test "should get destroy" do
-    get api_v1_workout_logs_destroy_url
+    get api_v1_type_of_exercises_destroy_url
     assert_response :success
   end
 end
