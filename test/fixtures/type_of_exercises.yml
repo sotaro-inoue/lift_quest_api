@@ -1,12 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-1:
+one:
   type: "Bench Press"
   priority: 1
   difficulty_level: 1
   main_target: 1
 
-2:
+two:
   type: "Squat"
   priority: 2
   difficulty_level: 1
