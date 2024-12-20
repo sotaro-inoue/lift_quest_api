@@ -13,7 +13,7 @@ jobs:
     env:
       RAILS_ENV: test
       MYSQL_ROOT_PASSWORD: password
-      DATABASE_HOST: 172.18.0.1
+      DATABASE_HOST: 127.0.0.1
       DATABASE_PORT: 3306
       TEST_DATABASE_USER: root
       TEST_DATABASE_PASSWORD: password
@@ -25,16 +25,15 @@ jobs:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: lift_quest_api_test
           MYSQL_ROOT_HOST: '%'
-          MYSQL_USER: root
-          MYSQL_PASSWORD: password
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping -h 172.18.0.1 -u root -ppassword"
+          --health-cmd="mysqladmin ping"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
+          --name=mysql
+          --tmpfs=/var/lib/mysql:rw
 
     steps:
     - uses: actions/checkout@v3
@@ -53,7 +52,7 @@ jobs:
 
     - name: Wait for MySQL
       run: |
-        while ! mysqladmin ping -h"172.18.0.1" -P"3306" -u"root" -p"password" --silent; do
+        while ! mysqladmin ping -h"127.0.0.1" -P"3306" -u"root" -p"password" --silent; do
           sleep 1
         done
 
@@ -62,11 +61,11 @@ jobs:
         echo "=== MySQL Service Check ==="
         sudo netstat -tlpn | grep 3306
         echo "=== MySQL Root Access ==="
-        mysql -h 172.18.0.1 -P 3306 -u root -ppassword -e "SELECT VERSION();"
+        mysql -h 127.0.0.1 -P 3306 -u root -ppassword -e "SELECT VERSION();"
         echo "=== MySQL Databases ==="
-        mysql -h 172.18.0.1 -P 3306 -u root -ppassword -e "SHOW DATABASES;"
+        mysql -h 127.0.0.1 -P 3306 -u root -ppassword -e "SHOW DATABASES;"
         echo "=== MySQL Users ==="
-        mysql -h 172.18.0.1 -P 3306 -u root -ppassword -e "SELECT user,host FROM mysql.user;"
+        mysql -h 127.0.0.1 -P 3306 -u root -ppassword -e "SELECT user,host FROM mysql.user;"
 
     - name: Set up database
       run: |
@@ -81,4 +80,4 @@ jobs:
         echo "Current environment variables:"
         env
         echo "MySQL connection test:"
-        mysql -h 172.18.0.1 -P 3306 -u root -ppassword -e "SHOW DATABASES;"
+        mysql -h 127.0.0.1 -P 3306 -u root -ppassword -e "SHOW DATABASES;"
