@@ -10,7 +10,7 @@ module Api
 
         def find_resource(field, value)
           # メールアドレスまたはユーザーIDでユーザーを検索
-          if field == 'email'
+          if field == "email"
             @resource = resource_class.find_by(email: value)
             @resource ||= resource_class.find_by(user_id: value)
           else
@@ -20,7 +20,7 @@ module Api
 
         def render_create_error_bad_credentials
           render json: {
-            errors: ['メールアドレス/ユーザーIDまたはパスワードが正しくありません']
+            errors: [ "メールアドレス/ユーザーIDまたはパスワードが正しくありません" ]
           }, status: 401
         end
       end

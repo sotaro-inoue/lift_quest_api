@@ -8,11 +8,11 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   validates :name, presence: true
-  validates :user_id, presence: true, 
+  validates :user_id, presence: true,
                     uniqueness: { case_sensitive: false },
-                    format: { 
+                    format: {
                       with: /\A@[a-zA-Z0-9_]+\z/,
-                      message: 'は@で始まる半角英数字とアンダースコアのみ使用できます'
+                      message: "は@で始まる半角英数字とアンダースコアのみ使用できます"
                     },
                     length: { minimum: 3, maximum: 21 }
 

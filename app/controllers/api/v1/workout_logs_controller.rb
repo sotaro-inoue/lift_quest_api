@@ -38,5 +38,4 @@ class Api::V1::WorkoutLogsController < ApplicationController
   def workout_log_params
     params.require(:workout_log).permit(:exercise_name, :type_of_exercise, :weight, :reps, :sets)
   end
-
 end

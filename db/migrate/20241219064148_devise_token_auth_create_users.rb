@@ -17,10 +17,10 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[7.1]
       t.text :tokens
 
       t.timestamps
-      
+
       t.index :email, unique: true
       t.index :user_id, unique: true
-      t.index [:uid, :provider], unique: true
+      t.index [ :uid, :provider ], unique: true
     end
   end
-end 
+end

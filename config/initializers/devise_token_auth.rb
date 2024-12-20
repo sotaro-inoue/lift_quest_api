@@ -6,11 +6,11 @@ DeviseTokenAuth.setup do |config|
   config.batch_request_buffer_throttle = 5.seconds
 
   config.headers_names = {
-    :'authorization' => 'Authorization',
-    :'access-token' => 'access-token',
-    :'client' => 'client',
-    :'expiry' => 'expiry',
-    :'uid' => 'uid',
-    :'token-type' => 'token-type'
+    'authorization': "Authorization",
+    'access-token': "access-token",
+    'client': "client",
+    'expiry': "expiry",
+    'uid': "uid",
+    'token-type': "token-type"
   }
 end

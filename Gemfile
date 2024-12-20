@@ -44,11 +44,14 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "rubocop", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
+  gem "rubocop-performance", require: false
 
-  gem 'dotenv-rails'
+  gem "dotenv-rails"
 
   gem "devise"
   gem "devise_token_auth"
-  gem 'devise-i18n'
-
+  gem "devise-i18n"
 end

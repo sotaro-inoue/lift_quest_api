@@ -21,7 +21,7 @@ module Api
           Rails.logger.debug "Render create error called"
           Rails.logger.debug "Resource errors: #{resource_errors}"
           render json: {
-            status: 'error',
+            status: "error",
             errors: resource_errors
           }, status: 422
         end
@@ -35,15 +35,15 @@ module Api
 
         def build_resource
           @resource = resource_class.new(sign_up_params)
-          @resource.provider = 'email'
-          
+          @resource.provider = "email"
+
           # uidをemailに設定（devise_token_authの要件）
           @resource.uid = sign_up_params[:email]
-          
+
           Rails.logger.debug "Built resource: #{@resource.inspect}"
           Rails.logger.debug "Resource valid? #{@resource.valid?}"
           Rails.logger.debug "Resource errors: #{@resource.errors.full_messages}" unless @resource.valid?
-          
+
           @resource
         end
       end
