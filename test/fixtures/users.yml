@@ -1,13 +1,19 @@
-one:
+1:
   email: user1@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
   name: "User One"
   provider: "email"
   uid: "user1@example.com"
+  user_id: "1"
+  experience_level: 1
+  training_goal: 1
 
-two:
+2:
   email: user2@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
   name: "User Two"
   provider: "email"
-  uid: "user2@example.com" 
+  uid: "user2@example.com"
+  user_id: "2"
+  experience_level: 2
+  training_goal: 2

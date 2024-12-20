@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-bench_press:
-  name: "Bench Press"
-  category: "Chest"
+1:
+  type: "Bench Press"
   priority: 1
-  description: "Compound chest exercise"
+  difficulty_level: 1
+  main_target: 1
 
-squat:
-  name: "Squat"
-  category: "Legs"
-  priority: 1
-  description: "Compound leg exercise"
+2:
+  type: "Squat"
+  priority: 2
+  difficulty_level: 1
+  main_target: 1
