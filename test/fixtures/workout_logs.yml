@@ -1,9 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  notes: MyText
-  user_id: 1
+  user: one
+  exercise: one
+  sets: 3
+  reps: 10
+  weight: 50.0
+  date: <%= Time.current %>
+  notes: "Good session"
 
 two:
-  notes: MyText
-  user_id: 1
+  user: two
+  exercise: two
+  sets: 4
+  reps: 8
+  weight: 60.0
+  date: <%= Time.current %>
+  notes: "Heavy day"

@@ -1,21 +1,13 @@
 one:
-  provider: email
-  uid: test1@example.com
-  name: Test User
-  email: test1@example.com
-  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
-  user_id: "@test_user"
-  tokens: {}
-  confirmed_at: <%= Time.current %>
-  allow_password_change: false
+  email: user1@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  name: "User One"
+  provider: "email"
+  uid: "user1@example.com"
 
 two:
-  provider: email
-  uid: test2@example.com
-  name: Another User
-  email: test2@example.com
-  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
-  user_id: "@another_user"
-  tokens: {}
-  confirmed_at: <%= Time.current %>
-  allow_password_change: false 
+  email: user2@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  name: "User Two"
+  provider: "email"
+  uid: "user2@example.com" 

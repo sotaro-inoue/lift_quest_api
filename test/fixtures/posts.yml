@@ -1,0 +1,13 @@
+one:
+  user: one
+  title: "First Post"
+  content: "This is my first workout post"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+two:
+  user: two
+  title: "Second Post"
+  content: "Another great workout day"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %> 
