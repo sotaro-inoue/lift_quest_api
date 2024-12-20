@@ -13,7 +13,8 @@ jobs:
     env:
       RAILS_ENV: test
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-      DATABASE_URL: mysql2://root:password@127.0.0.1:3306/lift_quest_api_test
+      DATABASE_HOST: 127.0.0.1
+      DATABASE_PORT: 3306
 
     services:
       mysql:
@@ -24,7 +25,7 @@ jobs:
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping"
+          --health-cmd="mysqladmin ping -h localhost"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
@@ -43,6 +44,12 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y libmysqlclient-dev
         bundle install
+
+    - name: Wait for MySQL
+      run: |
+        while ! mysqladmin ping -h"127.0.0.1" -P"3306" --silent; do
+          sleep 1
+        done
 
     - name: Set up database
       run: |
