@@ -14,10 +14,14 @@ class Api::V1::WorkoutLogsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create workout_log" do
     assert_difference("WorkoutLog.count") do
-      post api_v1_workout_logs_url, params: {
-        workout_log: {
-          # 必要なパラメータをここに追加
-        }
+      post api_v1_workout_logs_url, params: { 
+        workout_log: { 
+          exercise_name: "デッドリフト",
+          type_of_exercise: "背中",
+          weight: 100.0,
+          reps: 5,
+          sets: 3
+        } 
       }
     end
     assert_response :success
@@ -25,10 +29,14 @@ class Api::V1::WorkoutLogsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update workout_log" do
     workout_log = workout_logs(:one)
-    patch api_v1_workout_log_url(workout_log), params: {
+    patch api_v1_workout_log_url(workout_log), params: { 
       workout_log: {
-        # 更新するパラメータをここに追加
-      }
+        exercise_name: "ベンチプレス",
+        type_of_exercise: "胸",
+        weight: 80.0,
+        reps: 8,
+        sets: 4
+      } 
     }
     assert_response :success
   end
