@@ -1,4 +1,4 @@
-class Api::V1::TypeOfExercisesController < ApplicationController
+class API::V1::TypeOfExercisesController < ApplicationController
   before_action :authenticate_api_v1_user!
 
   def index

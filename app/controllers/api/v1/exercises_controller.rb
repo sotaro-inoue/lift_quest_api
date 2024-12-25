@@ -1,4 +1,4 @@
-class Api::V1::ExercisesController < ApplicationController
+class API::V1::ExercisesController < ApplicationController
   before_action :authenticate_api_v1_user!
   before_action :set_workout_log, only: [ :create, :index ]
   before_action :set_exercise, only: [ :show, :update, :destroy ]

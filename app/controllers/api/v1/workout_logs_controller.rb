@@ -1,4 +1,4 @@
-class Api::V1::WorkoutLogsController < ApplicationController
+class API::V1::WorkoutLogsController < ApplicationController
   before_action :authenticate_api_v1_user!
   before_action :set_workout_log, only: [ :show, :update, :destroy ]
   before_action :authorize_workout_log, only: [ :show, :update, :destroy ]
