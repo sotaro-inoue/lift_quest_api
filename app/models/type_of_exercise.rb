@@ -46,13 +46,13 @@ class TypeOfExercise < ApplicationRecord
 
     # トレーニング目標に基づく調整
     case user.training_goal
-    when 'strength'
+    when "strength"
       priority_score += 2 if self.strength? || self.big3?
-    when 'hypertrophy'
+    when "hypertrophy"
       priority_score += 2 if self.hypertrophy?
-    when 'endurance'
+    when "endurance"
       priority_score += 2 if self.endurance?
-    when 'weight_loss'
+    when "weight_loss"
       priority_score += 2 if self.compound?
     end
 

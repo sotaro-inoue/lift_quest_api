@@ -13,7 +13,7 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should update user" do
     patch update_training_info_api_v1_users_path,
-          params: { 
+          params: {
             user: {
               experience_level: "intermediate",
               training_goal: "hypertrophy"
@@ -23,4 +23,4 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
           as: :json
     assert_response :success
   end
-end 
+end

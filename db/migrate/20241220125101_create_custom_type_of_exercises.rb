@@ -7,6 +7,6 @@ class CreateCustomTypeOfExercises < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :custom_type_of_exercises, [:user_id, :name], unique: true
+    add_index :custom_type_of_exercises, [ :user_id, :name ], unique: true
   end
-end 
+end

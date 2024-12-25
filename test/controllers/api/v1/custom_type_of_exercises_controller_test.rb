@@ -14,7 +14,7 @@ class Api::V1::CustomTypeOfExercisesControllerTest < ActionDispatch::Integration
   end
 
   test "should create custom_type_of_exercise" do
-    assert_difference('CustomTypeOfExercise.count') do
+    assert_difference("CustomTypeOfExercise.count") do
       post api_v1_custom_type_of_exercises_url,
            params: {
              custom_type_of_exercise: {
@@ -41,10 +41,10 @@ class Api::V1::CustomTypeOfExercisesControllerTest < ActionDispatch::Integration
   end
 
   test "should destroy custom_type_of_exercise" do
-    assert_difference('CustomTypeOfExercise.count', -1) do
+    assert_difference("CustomTypeOfExercise.count", -1) do
       delete api_v1_custom_type_of_exercise_url(@custom_type_of_exercise),
              headers: @headers
     end
     assert_response :success
   end
-end 
+end

@@ -64,15 +64,15 @@ class Api::V1::TypeOfExercisesController < ApplicationController
 
   def exercise_history
     @type_of_exercise = TypeOfExercise.find(params[:id])
-    period = params[:period] || 'daily'  # daily, weekly, monthly, yearly
+    period = params[:period] || "daily"  # daily, weekly, monthly, yearly
     date = params[:date].to_date
-    
+
     range = case period
-            when 'daily'   then date.beginning_of_day..date.end_of_day
-            when 'weekly'  then date.beginning_of_week..date.end_of_week
-            when 'monthly' then date.beginning_of_month..date.end_of_month
-            when 'yearly'  then date.beginning_of_year..date.end_of_year
-            end
+    when "daily"   then date.beginning_of_day..date.end_of_day
+    when "weekly"  then date.beginning_of_week..date.end_of_week
+    when "monthly" then date.beginning_of_month..date.end_of_month
+    when "yearly"  then date.beginning_of_year..date.end_of_year
+    end
 
     @exercises = current_api_v1_user.exercises
                   .where(type_of_exercise: @type_of_exercise)
@@ -108,8 +108,8 @@ class Api::V1::TypeOfExercisesController < ApplicationController
     # 全ての利用可能な種目を取得し、ユーザーに応じた優先度を計算
     available_exercises = TypeOfExercise
                            .where.not(id: @recent_exercises)
-                           .map { |exercise| 
-                             [exercise, exercise.calculate_priority_for_user(current_api_v1_user)]
+                           .map { |exercise|
+                             [ exercise, exercise.calculate_priority_for_user(current_api_v1_user) ]
                            }
                            .sort_by { |_, priority| -priority }
 
@@ -125,7 +125,7 @@ class Api::V1::TypeOfExercisesController < ApplicationController
 
   def update_priority
     @type_of_exercise = TypeOfExercise.find(params[:id])
-    
+
     if @type_of_exercise.update(priority: params[:priority])
       render json: @type_of_exercise
     else

@@ -5,6 +5,10 @@ DeviseTokenAuth.setup do |config|
   config.token_lifespan = 2.weeks
   config.batch_request_buffer_throttle = 5.seconds
 
+  config.default_callbacks = true
+  config.bypass_sign_in = true
+  config.enable_standard_devise_support = true
+
   config.headers_names = {
     'authorization': "Authorization",
     'access-token': "access-token",

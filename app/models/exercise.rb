@@ -4,8 +4,8 @@ class Exercise < ApplicationRecord
   belongs_to :custom_type_of_exercise, optional: true
   has_one :user, through: :workout_log
 
-  validates :exercise_name, presence: true  
-  validates :weight, presence: true, numericality: { greater_than: 0 }  
+  validates :exercise_name, presence: true
+  validates :weight, presence: true, numericality: { greater_than: 0 }
   validates :reps, presence: true, numericality: { greater_than: 0 }
   validates :sets, presence: true, numericality: { greater_than: 0 }
   validates :workout_log_id, presence: true

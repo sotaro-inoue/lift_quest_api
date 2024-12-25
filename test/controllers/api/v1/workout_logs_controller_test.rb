@@ -18,7 +18,7 @@ class Api::V1::WorkoutLogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create workout_log" do
-    assert_difference('WorkoutLog.count') do
+    assert_difference("WorkoutLog.count") do
       post api_v1_workout_logs_url,
            params: {
              workout_log: {
@@ -44,7 +44,7 @@ class Api::V1::WorkoutLogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy workout_log" do
-    assert_difference('WorkoutLog.count', -1) do
+    assert_difference("WorkoutLog.count", -1) do
       delete api_v1_workout_log_url(@workout_log), headers: @headers
     end
     assert_response :success

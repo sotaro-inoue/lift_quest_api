@@ -18,11 +18,11 @@ module ActiveSupport
 
       # ヘッダーにトークンを設定
       @headers = {
-        'access-token' => @auth_tokens['access-token'],
-        'client' => @auth_tokens['client'],
-        'uid' => user.uid,
-        'Content-Type' => 'application/json',
-        'Accept' => 'application/json'
+        "access-token" => @auth_tokens["access-token"],
+        "client" => @auth_tokens["client"],
+        "uid" => user.uid,
+        "Content-Type" => "application/json",
+        "Accept" => "application/json"
       }
     end
   end

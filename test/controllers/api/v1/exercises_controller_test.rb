@@ -14,7 +14,7 @@ class Api::V1::ExercisesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create exercise" do
-    assert_difference('Exercise.count') do
+    assert_difference("Exercise.count") do
       post api_v1_workout_log_exercises_url(@workout_log),
           params: {
             exercise: {
@@ -32,7 +32,7 @@ class Api::V1::ExercisesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update exercise" do
-    patch api_v1_exercise_url(@exercise), 
+    patch api_v1_exercise_url(@exercise),
           params: {
             exercise: {
               weight: 120.0,
@@ -47,7 +47,7 @@ class Api::V1::ExercisesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy exercise" do
-    assert_difference('Exercise.count', -1) do
+    assert_difference("Exercise.count", -1) do
       delete api_v1_exercise_url(@exercise), headers: @headers
     end
     assert_response :success
