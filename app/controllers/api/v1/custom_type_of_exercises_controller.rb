@@ -1,4 +1,4 @@
-class Api::V1::CustomTypeOfExercisesController < ApplicationController
+class API::V1::CustomTypeOfExercisesController < ApplicationController
   before_action :authenticate_api_v1_user!
   before_action :set_custom_type, only: [ :update, :destroy ]
 
